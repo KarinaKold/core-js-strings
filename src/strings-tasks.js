@@ -147,9 +147,10 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  //   const indexStart = str.indexOf(value);
-  //   return str.slice(0, indexStart) + str.slice(indexStart + value.length);
+function removeFirstOccurrences(str, value) {
+  const indexStart = str.indexOf(value);
+  if (indexStart === -1) return str;
+  return str.slice(0, indexStart) + str.slice(indexStart + value.length);
 }
 
 /**
@@ -164,9 +165,10 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  // const indexEnd = str.lastIndexOf(value);
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const indexEnd = str.lastIndexOf(value);
+  if (indexEnd === -1) return str;
+  return str.slice(0, indexEnd) + str.slice(indexEnd + value.length);
 }
 
 /**
@@ -356,8 +358,14 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((char) => {
+      const upper = char.toUpperCase();
+      return char === upper ? char.toLowerCase() : upper;
+    })
+    .join('');
 }
 
 /**
@@ -373,8 +381,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -387,8 +395,8 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, -1);
 }
 
 /**
